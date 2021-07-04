@@ -10,10 +10,10 @@ it would be a big deal)
   c. -ds, --descending: all files in the program output should be sorted by confidence level descending (from high to low).
   d. -as, --ascending: all files in the program output should be sorted by confidence level ascending (from low to high).
   e. -p, --print-confidence: print the confidence level along with the file name.
-  f. -h, --help: print help message for all available options (feel free to copy-paste this text).
+  f. -h, --help: print help message for all available options.
 
 Tests:
-1.
+1. 
   D:\Courses\UnderDefense\Python\hometask5>py DetectEncrypted.py -c 40 -as --dir D:\Courses\JSCore\repository\JavaScript_lesson_04
   README.md
   task3.js
@@ -23,7 +23,7 @@ Tests:
   task5.js
   task1.html
   task2.html
-2.
+2. 
   D:\Courses\UnderDefense\Python\hometask5>py DetectEncrypted.py -c 40 --print-confidence -ds -d D:\Courses\JSCore\repository\JavaScript_lesson_16
   63% task.js
   62% ajax.html
