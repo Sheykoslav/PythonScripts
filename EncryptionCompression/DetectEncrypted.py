@@ -1,6 +1,7 @@
 import os
 import math
 import collections
+from argparse import ArgumentParser
 
 
 class Detector(object):
@@ -8,9 +9,8 @@ class Detector(object):
     Detect encrypted/compressed files in given directory.
     Scanned files stored in list of tuples: (confidence, filename).
     """
-    def __init__(self, dirname):
+    def __init__(self):
         self.file_confidence = []
-        self.scan_directory(dirname)
 
     @staticmethod
     def entropy(data):
@@ -80,31 +80,32 @@ class Detector(object):
                 else:
                     print(os.path.basename(item[1]))
 
-def cli_config():
-    from argparse import ArgumentParser
+    @staticmethod
+    def cli_config():
+        parser = ArgumentParser(usage='detect encrypted/compressed files in a specified directory')
 
-    parser = ArgumentParser(usage='detect encrypted/compressed files in a specified directory')
-    parser.add_argument('-d', '--dir', default="", type=str,
-        help='specifies the path to directory where to look for encrypted/compressed files'
-    )
-    parser.add_argument('-c', '--confidence', default=80, type=int,
-        help='specifies the threshold level of confidence (in percents from 0 to 100) to treat a certain file as encryped/compressed'
-    )
-    parser.add_argument('-ds', '--descending', default=False, const=True, type=bool, nargs='?',
-        help='all files in the program output should be sorted by confidence level descending'
-    )
-    parser.add_argument('-as', '--ascending', default=False, const=True, type=bool, nargs='?',
-        help='all files in the program output should be sorted by confidence level ascending'
-    )
-    parser.add_argument('-p', '--print-confidence', default=False, const=True, type=bool, nargs='?',
-        help='print the confidence level along with the file name'
-    )
+        parser.add_argument('-d', '--dir', default="", type=str,
+            help='specifies the path to directory where to look for encrypted/compressed files'
+        )
+        parser.add_argument('-c', '--confidence', default=80, type=int,
+            help='specifies the threshold level of confidence (in percents from 0 to 100) to treat a certain file as encryped/compressed'
+        )
+        parser.add_argument('-ds', '--descending', default=False, const=True, type=bool, nargs='?',
+            help='all files in the program output should be sorted by confidence level descending'
+        )
+        parser.add_argument('-as', '--ascending', default=False, const=True, type=bool, nargs='?',
+            help='all files in the program output should be sorted by confidence level ascending'
+        )
+        parser.add_argument('-p', '--print-confidence', default=False, const=True, type=bool, nargs='?',
+            help='print the confidence level along with the file name'
+        )
 
-    return parser.parse_args()
+        return parser.parse_args()
 
 
 if __name__ == '__main__':
-    cli_args = cli_config()
+    cli_args = Detector.cli_config()
 
-    detector = Detector(cli_args.dir)
+    detector = Detector()
+    detector.scan_directory(cli_args.dir)
     detector.handle_output(cli_args)
