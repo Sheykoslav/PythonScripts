@@ -1,0 +1,19 @@
+Tests:
+1.
+  D:\Courses\UnderDefense\Python\hometask5>py DetectEncrypted.py -c 40 -as --dir D:\Courses\JSCore\repository\JavaScript_lesson_04
+  README.md
+  task3.js
+  task4.js
+  task7.js
+  task6.js
+  task5.js
+  task1.html
+  task2.html
+2.
+  D:\Courses\UnderDefense\Python\hometask5>py DetectEncrypted.py -c 40 --print-confidence -ds -d D:\Courses\JSCore\repository\JavaScript_lesson_16
+  63% task.js
+  62% ajax.html
+  62% server.js
+  60% package-lock.json
+  52% README.md
+  50% package.json
